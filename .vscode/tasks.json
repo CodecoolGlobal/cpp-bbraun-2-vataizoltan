@@ -1,0 +1,30 @@
+{
+    "tasks": [
+       {
+            "type": "cppbuild",
+            "label": "C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/src/main.cpp",
+                "${workspaceFolder}/src/geometry/containers/*.cpp",
+                "${workspaceFolder}/src/geometry/shapes/*.cpp",
+                "-I${workspaceFolder}/include/geometry/",
+                "-I${workspaceFolder}/include/geometry/containers/",
+                "-I${workspaceFolder}/include/geometry/shapes/",
+                "-o",
+                "${workspaceFolder}/output/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "compiler: /usr/bin/g++"
+        }
+    ],
+    "version": "2.0.0"
+}
