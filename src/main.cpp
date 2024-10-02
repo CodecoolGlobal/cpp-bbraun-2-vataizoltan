@@ -1,6 +1,5 @@
 #include <iostream>
 #include <limits>
-#include <cstdlib>
 
 #include "ShapeCollection.h"
 #include "Rectangle.h"
@@ -13,7 +12,7 @@
 using namespace std;
 
 void addNewShape(ShapeCollection& shapeCollection);
-double getPositiveDouble(string prompt);
+double getPositiveDouble(const string &prompt);
 
 int main() {
     
@@ -30,7 +29,25 @@ int main() {
         cout << "Quit (0)" << endl;
         cin >> option;
 
-        // menu implementaion
+        switch (option) {
+            case 1:
+                addNewShape(shapeCollection);
+                break;
+            case 2:
+                cout << shapeCollection.getShapesTable() << endl;
+                break;
+            case 3:
+                cout << "Shape with the largest perimeter:" << endl;
+                cout << shapeCollection.getLargestShapeByPerimeter() << endl;
+                break;
+            case 4:
+                cout << "Shape with the largest area:" << endl;
+                cout << shapeCollection.getLargestShapeByArea() << endl;
+                break;
+            case 0:
+                isRunning = false;
+                break;
+        }
     }
 
     return 0;
@@ -51,11 +68,57 @@ void addNewShape(ShapeCollection& shapeCollection){
         cout << "Quit (0)\n";
         cin >> option;
 
-        // menu implementation
+        switch (option) {
+            case 1:
+            {
+                double radius = getPositiveDouble("Radius: ");
+                Points circleCenter;
+                circleCenter.x = getPositiveDouble("Center x: ");
+                circleCenter.y = getPositiveDouble("Center y: ");
+                shapeCollection.addCircle(Circle(radius, circleCenter));
+                break;
+            }
+            case 2:
+            {
+                double a = getPositiveDouble("Side a: ");
+                double b = getPositiveDouble("Side b: ");
+                shapeCollection.addRectangle(Rectangle(a, b));
+                break;
+            }
+            case 3:
+            {
+                double a = getPositiveDouble("Side a: ");
+                double b = getPositiveDouble("Side b: ");
+                double c = getPositiveDouble("Side c: ");
+                shapeCollection.addTriangle(Triangle(a, b, c));
+                break;
+            }
+            case 4:
+            {
+                double a = getPositiveDouble("Side a: ");
+                shapeCollection.addSquare(Square(a));
+                break;
+            }
+            case 5:
+            {
+                double a = getPositiveDouble("Side a: ");
+                shapeCollection.addEquilateralTriangle(EquilateralTriangle(a));
+                break;
+            }
+            case 6:
+            {
+                double a = getPositiveDouble("Side a: ");
+                shapeCollection.addRegularPentagon(RegularPentagon(a));
+                break;
+            }
+            case 0:
+                isRunning = false;
+                break;
+        }
     }
 }
 
-double getPositiveDouble(string prompt) {
+double getPositiveDouble(const string &prompt) {
     double value;
     do {
         cout << prompt;
